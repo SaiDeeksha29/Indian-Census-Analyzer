@@ -2,6 +2,7 @@ package com.assignment.indianCensus;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -17,7 +18,6 @@ public class CensusAnalyzer {
 			csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
 			CsvToBean<IndiaCensusCSV> csvToBean = csvToBeanBuilder.build();
 			Iterator<IndiaCensusCSV> censusCSVIterator = csvToBean.iterator();
-			;
 			int namOfEnteries = 0;
 			while (censusCSVIterator.hasNext()) {
 				namOfEnteries++;
