@@ -18,12 +18,12 @@ public class CensusAnalyzer {
 			csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
 			CsvToBean<IndiaCensusCSV> csvToBean = csvToBeanBuilder.build();
 			Iterator<IndiaCensusCSV> censusCSVIterator = csvToBean.iterator();
-			int namOfEnteries = 0;
+			int namOfEntries = 0;
 			while (censusCSVIterator.hasNext()) {
-				namOfEnteries++;
+				namOfEntries++;
 				censusCSVIterator.next();
 			}
-			return namOfEnteries;
+			return namOfEntries;
 		} catch (IOException e) {
 			throw new CensusAnalyzerException(e.getMessage(),
 					CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM);
