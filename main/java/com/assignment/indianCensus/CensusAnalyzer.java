@@ -2,13 +2,14 @@ package com.assignment.indianCensus;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
 
 public class CensusAnalyzer {
-	public int loadIndiaCensusData(String csvFilePath) {
+	public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyzerException {
 		try {
 			Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
 			CsvToBeanBuilder<IndiaCensusCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
@@ -17,14 +18,15 @@ public class CensusAnalyzer {
 			CsvToBean<IndiaCensusCSV> csvToBean = csvToBeanBuilder.build();
 			Iterator<IndiaCensusCSV> censusCSVIterator = csvToBean.iterator();
 			;
-			int namOfEateries = 0;
+			int namOfEnteries = 0;
 			while (censusCSVIterator.hasNext()) {
-				namOfEateries++;
+				namOfEnteries++;
+				censusCSVIterator.next();
 			}
-			return namOfEateries;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return 0;
+			return namOfEnteries;
+		} catch (IOException e) {
+			throw new CensusAnalyzerException(e.getMessage(),
+					CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM);
 		}
 	}
 }
