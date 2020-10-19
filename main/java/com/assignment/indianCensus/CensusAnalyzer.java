@@ -34,7 +34,7 @@ public class CensusAnalyzer {
 	}
 
 	public int loadStateCode(String indiaCensusCSVFilePath) throws CensusAnalyzerException {
-		CSVFormat format = CSVFormat.RFC4180.withDelimiter(',');
+		CSVFormat format = CSVFormat.RFC4180.withDelimiter(',').withHeader();
 		try (CSVParser parser = new CSVParser(new FileReader(indiaCensusCSVFilePath), format);
 				Reader reader = Files.newBufferedReader(Paths.get(indiaCensusCSVFilePath));) {
 			CsvToBeanBuilder<IndiaStateCodeCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
